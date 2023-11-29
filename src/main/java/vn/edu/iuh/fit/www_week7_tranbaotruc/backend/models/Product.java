@@ -44,7 +44,6 @@ public class Product {
         }
     }
 
-
     public Product(String name, String description, int unit, String manufacturerName, ProductStatus status) {
         this.name = name;
         this.description = description;
@@ -53,4 +52,15 @@ public class Product {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", unit=" + unit +
+                ", manufacturerName='" + manufacturerName + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }
