@@ -33,6 +33,6 @@ public class Employee {
     @Column(nullable = false,columnDefinition = "nvarchar(255)")
     private String address;
     @Column(nullable = false)
-    private EmployeeStatus status;
+    private EmployeeStatus1 status;
 
 }
