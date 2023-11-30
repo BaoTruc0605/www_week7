@@ -31,6 +31,9 @@
 ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/5bc4676c-1fe2-49ec-912c-9fcf5e1cf1b9)
 
    ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/e06ffce6-9de1-4a66-b5f5-f17a7f3f2281)
+10. chỉnh lại trang hiển thị danh sách product
+    ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/881a517d-18d7-4ac9-bc82-647c725bb2c4)
+
 
 
 
