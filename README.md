@@ -17,6 +17,18 @@
    ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/04b949c8-5689-4c80-a1cf-1e776f65b46d)
    Thêm sản phẩm với item 11. Số lượng được cập nhật lên giỏ hàng và cập nhật danh sách trong giỏ hàng
    ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/c8f49eb1-9db0-442e-a6cc-0a68190126a1)
+   Nếu sản phẩm đã có trong giỏ hàng thì cộng thêm 1,(ban đàu có 2 sản phẩm, sau đó tăng lên 3)
+   ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/d97dabd4-af1d-472c-9313-f3143403d277)
+
+8. tăng hoặc giảm sản phẩm trong giỏ hàng
+   ban đầu có 2 sản phẩm
+   ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/a05cf508-05bd-44ca-89c4-5e10766cd0ee)
+   nhấn dấu - thì còn 1 sản phẩm
+  ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/2a5b8154-13b4-498c-bafd-255a8a01e3cf)
+   Nhaans dấu cộng thì lên 2 sản phẩm
+   ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/961bab9a-fbe7-40ed-bfec-530f3d9969e1)
+
+
 
 
 
