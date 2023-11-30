@@ -27,6 +27,11 @@
   ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/2a5b8154-13b4-498c-bafd-255a8a01e3cf)
    Nhaans dấu cộng thì lên 2 sản phẩm
    ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/961bab9a-fbe7-40ed-bfec-530f3d9969e1)
+9. Nếu sản phẩm có số lượng trong cart = 0 thì không hiển thị
+![Uploading image.png…]()
+
+   ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/e06ffce6-9de1-4a66-b5f5-f17a7f3f2281)
+
 
 
 
