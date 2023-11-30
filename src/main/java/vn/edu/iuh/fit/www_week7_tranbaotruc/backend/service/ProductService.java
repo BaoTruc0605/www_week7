@@ -7,6 +7,7 @@ import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.models.Product;
 import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.repository.EmployeeRepository;
 import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.repository.ProductRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,5 +22,8 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public List<Product> getAll(){
+        return  productRepository.findAll();
+    }
 
 }

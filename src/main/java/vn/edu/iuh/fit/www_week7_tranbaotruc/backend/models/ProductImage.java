@@ -27,9 +27,8 @@ public class ProductImage {
     private String alternative;
 
 
-    public ProductImage(Product product, long imageId, String path, String alternative) {
+    public ProductImage(Product product, String path, String alternative) {
         this.product = product;
-        this.imageId = imageId;
         this.path = path;
         this.alternative = alternative;
     }

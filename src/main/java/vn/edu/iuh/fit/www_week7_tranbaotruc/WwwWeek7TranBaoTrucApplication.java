@@ -5,16 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.enums.EmployeeStatus;
-import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.enums.ProductStatus;
-import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.models.Customer;
-import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.models.Employee;
-import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.models.Product;
-import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.repository.CustomerRepository;
-import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.repository.EmployeeRepository;
-import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.repository.ProductRepository;
+import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.repository.*;
 
-import java.time.LocalDate;
 import java.util.Random;
 
 @SpringBootApplication
@@ -30,12 +22,16 @@ public class WwwWeek7TranBaoTrucApplication {
     private EmployeeRepository employeeRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductImageRepository prodcutImageRepository;
+    @Autowired
+    private ProductPriceRepository productPriceRepository;
 
     @Bean
     CommandLineRunner initData() {
         return args -> {
             Random rnd = new Random();
-//            for(long i=10; i<40; i++){
+            for(long i=10; i<40; i++){
 ////
 //                Customer customer = new Customer("Tran Bao Truc "+i, "email_"+i+"@gmail.com","03380305"+i, "Go Vap "+i );
 //                customerRepository.save(customer);
@@ -47,7 +43,20 @@ public class WwwWeek7TranBaoTrucApplication {
 //                System.out.println(customer);
 //                System.out.println(employee);
 //                System.out.println(product);
-//            }
+// public ProductPrice(Product product, LocalDate date, double price, String note) {
+//                    this.product = product;
+//                    this.date = date;
+//                    this.price = price;
+//                    this.note = note;
+//                }
+
+//                ProductImage productImage = new ProductImage(productRepository.findById(i-9).get(),i-9+".png","good "+i );
+//            ProductPrice productPrice = new ProductPrice(productRepository.findById(i-9).get(),LocalDate.of(2023,6,(int)i-9), i*10000, "note "+1);
+//            System.out.println(productImage);
+//                System.out.println(productPrice);
+//                prodcutImageRepository.save(productImage);
+//                productPriceRepository.save(productPrice);
+            }
         };
     }
 }
