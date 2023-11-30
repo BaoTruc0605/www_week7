@@ -9,6 +9,7 @@
 4. for customer :  sau khi đăng nhập thành công thì sẽ vào trang chủ và có thể thấy được các product
  ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/608b0e5a-0ce3-4f45-ae62-42800043a964)
 5. View my cart
-   ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/0811631b-af3f-4ae7-860d-d3f4cacac849)
+   ![image](https://github.com/BaoTruc0605/www_week7/assets/114350927/5c22828d-2721-4283-ae0f-10aab197a85d)
+
 
 
