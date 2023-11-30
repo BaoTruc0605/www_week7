@@ -72,13 +72,26 @@ C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                             <span th:if="${cart.product.id==product.id}">
                                <p>Total: <span class="card-text mb-auto" th:text="${cart.getTotalPrice()}"></span></p>
 
-                                <button class="btn btn-outline-dark" type="submit">
-                           <i class="bi bi-dash-square"></i>
+                                <form action="/desCart" method="post">
+                            <input type="hidden" th:value="${product.getId()}" name="productId">
+                            <input type="hidden" th:value="${customerId}" name="customerId">
 
-                        </button>
-                                <span th:text="${cart.quantity}"></span>
+                                <button class="btn btn-outline-dark" type="submit">
+                                 <i class="bi bi-dash-square"></i>
+                                </button>
+                            </form>
+
+                                 <span th:text="${cart.quantity}"></span>
+
+                                    <form action="/cart" method="post">
+                            <input type="hidden" th:value="${product.getId()}" name="productId">
+                            <input type="hidden" th:value="${customerId}" name="customerId">
+
+
                                 <button class="btn btn-outline-dark" type="submit">
                                 <i class="bi bi-plus-square"></i>  </button>
+                        </form>
+
                             </span>
 
                         </div>

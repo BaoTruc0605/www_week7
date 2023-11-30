@@ -29,14 +29,12 @@ public class CustomerController {
     private CartService cartService;
 
 
-
     @PostMapping("/login")
-    public String login(Model model, @RequestParam("phone") String phone, HttpSession session){
+    public String login(Model model, @RequestParam("phone") String phone, HttpSession session) {
         Optional<Customer> loginAccount = customerService.findCustomersByPhone(phone);
-        if(loginAccount.isEmpty()){
+        if (loginAccount.isEmpty()) {
             model.addAttribute("loginStatus", false);
-        }
-        else{
+        } else {
             model.addAttribute("loginAccount", loginAccount);
             List<Product> products = productService.getAll();
             model.addAttribute("products", products);
@@ -56,24 +54,43 @@ public class CustomerController {
 
     @PostMapping("/cart")
     public String addCart(Model model, RedirectAttributes redirectAttributes, @RequestParam("productId") Long productId, @RequestParam("customerId") Long customerId,
-                          HttpSession session){
-        Cart cart = new Cart(customerService.findById(customerId).get(),productService.findById(productId).get(), 1 );
-        cartService.add(cart);
-        redirectAttributes.addAttribute("customerId", customerId+"");
-//
+                          HttpSession session) {
+
+        Optional<Cart> cartOptional = cartService.findCartByCustomerIdAndAndProductId(customerId, productId);
+        if (cartOptional.isEmpty()) {
+            Cart cart = new Cart(customerService.findById(customerId).get(), productService.findById(productId).get(), 1);
+            cartService.add(cart);
+        } else {
+            int a = cartService.updateQuantity(cartOptional.get().getCustomer().getId(), cartOptional.get().getProduct().getId(), cartOptional.get().getQuantity() + 1);
+            System.out.println(cartOptional.get().getQuantity() + 1);
+        }
+        redirectAttributes.addAttribute("customerId", customerId + "");
+        return "redirect:/showCart";
+    }
+
+    @PostMapping("/desCart")
+    public String desCart(Model model, RedirectAttributes redirectAttributes, @RequestParam("productId") Long productId, @RequestParam("customerId") Long customerId,
+                          HttpSession session) {
+
+        Optional<Cart> cartOptional = cartService.findCartByCustomerIdAndAndProductId(customerId, productId);
+
+        int a = cartService.updateQuantity(cartOptional.get().getCustomer().getId(), cartOptional.get().getProduct().getId(), cartOptional.get().getQuantity() - 1);
+        System.out.println(cartOptional.get().getQuantity() + 1);
+        redirectAttributes.addAttribute("customerId", customerId + "");
         return "redirect:/showCart";
     }
 
     @GetMapping("/showCart")
-    public String showCart(Model model,@RequestParam("customerId") String customerId,HttpSession session){
+    public String showCart(Model model, @RequestParam("customerId") String customerId, HttpSession session) {
         List<Cart> carts = cartService.findCartsByCustomer_Id(Long.parseLong(customerId));
         List<Product> products = new ArrayList<>();
-        for (Cart cart: carts
-             ) {
+        for (Cart cart : carts
+        ) {
             products.add(productService.findById(cart.getProduct().getId()).get());
         }
         model.addAttribute("carts", carts);
         model.addAttribute("products", products);
+        model.addAttribute("customerId", customerId);
         return "customer/cart";
     }
 

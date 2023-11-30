@@ -59,6 +59,8 @@ public class WwwWeek7TranBaoTrucApplication {
 //            }
 //            Cart cart = new Cart(customerRepository.findById(10l).get(),productRepository.findById(10l).get(),5);
 //            cartRepository.save(cart);
+
+//            cartRepository.updateQuantity(10l,2l,5);
         };
     }
 }
