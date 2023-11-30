@@ -19,14 +19,15 @@ C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 </head>
 <body>
 <div th:switch="${products}">
-<!--    <input type="hidden" th:value="${loginAccount.get().id}" name="userId">-->
-    <h2 th:case="null">No products yet!</h2>
+    <h2 th:case="null">No posts yet!</h2>
     <div th:case="*">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="#!">Bao Truc</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation"><span
                         class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -46,35 +47,43 @@ C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit" >
-
+                        <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                           <a th:href="@{/showCart(customerId=${loginAccount.get().id})}"> Cart</a>
+                            Cart
                             <span class="badge bg-dark text-white ms-1 rounded-pill" th:text="${carts.size()}"></span>
                         </button>
                     </form>
                 </div>
             </div>
         </nav>
-        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-4 justify-content-center">
+        <div class="justify-content-center">
 
-            <div th:each="product : ${products}" class="col mb-4">
-                <div class="card h-100 border">
-                    <img class="card-img-top text-center" style="height: 300px; width: 250px;"
-                         th:src="@{images/{img}(img=${product.getProductImages().get(0).getPath()})}" alt="..."/>
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <h5 class="card-title fw-bolder" th:text="${product.getName()}"></h5>
-                            <p class="card-text fw-bolder" th:text="${product.getId()}"></p>
-                            <p class="card-text fw-bolder" th:text="${product.getDescription()}"></p>
+            <div th:each="product : ${products}" class="row mb-2">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="200" height="250"
+                             th:src="@{images/{img}(img=${product.getProductImages().get(0).getPath()})}" alt="..."/>
+                    </div>
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h5>Name:<span class="mb-0" th:text="${product.getName()}"></span></h5>
+                        <p>Price:<span class="card-text mb-auto" th:text="${product.getPrice()}"></span></p>
+                        <p>Desc: <span class="card-text mb-auto" th:text="${product.getDescription()}"></span></p>
+                        <div th:each="cart : ${carts}">
+                            <span th:if="${cart.product.id==product.id}">
+                               <p>Total: <span class="card-text mb-auto" th:text="${cart.getTotalPrice()}"></span></p>
+
+                                <button class="btn btn-outline-dark" type="submit">
+                           <i class="bi bi-dash-square"></i>
+
+                        </button>
+                                <span th:text="${cart.quantity}"></span>
+                                <button class="btn btn-outline-dark" type="submit">
+                                <i class="bi bi-plus-square"></i>  </button>
+                            </span>
+
                         </div>
                     </div>
 
-                        <form  action="/cart"  method="post">
-                            <input type="hidden" th:value="${product.getId()}" name="productId">
-                            <input type="hidden" th:value="${loginAccount.get().id}" name="customerId">
-                            <button type="submit" class="text-center">Add to cart</button>
-                        </form>
 
                 </div>
             </div>

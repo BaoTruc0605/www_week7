@@ -9,7 +9,6 @@ import java.util.List;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 @IdClass(CartPK.class)
 @Entity
@@ -17,14 +16,20 @@ import java.util.List;
 public class Cart {
     @Id
     @ManyToOne
-    @JoinColumn(name = "emp_id",nullable = false)
-    private Employee employee;
+    @JoinColumn(name = "cust_id",nullable = false)
+    private Customer customer;
     @Id
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
     @Column(length = 10, nullable = false)
     private int quantity;
+
+    public Cart(Customer customer, Product product, int quantity) {
+        this.customer = customer;
+        this.product = product;
+        this.quantity = quantity;
+    }
 
     public double getTotalPrice(){
         return product.getPrice()*quantity;

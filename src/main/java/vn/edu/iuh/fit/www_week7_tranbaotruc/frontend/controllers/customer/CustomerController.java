@@ -7,11 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.models.Cart;
 import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.models.Customer;
 import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.models.Product;
+import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.service.CartService;
 import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.service.CustomerService;
 import vn.edu.iuh.fit.www_week7_tranbaotruc.backend.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +25,10 @@ public class CustomerController {
     private CustomerService customerService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CartService cartService;
+
+
 
     @PostMapping("/login")
     public String login(Model model, @RequestParam("phone") String phone, HttpSession session){
@@ -32,6 +40,8 @@ public class CustomerController {
             model.addAttribute("loginAccount", loginAccount);
             List<Product> products = productService.getAll();
             model.addAttribute("products", products);
+            List<Cart> carts = cartService.findCartsByCustomer_Id(loginAccount.get().getId());
+            model.addAttribute("carts", carts);
             return "/home";
         }
         return "/index";
@@ -44,6 +54,28 @@ public class CustomerController {
         return "/home";
     }
 
+    @PostMapping("/cart")
+    public String addCart(Model model, RedirectAttributes redirectAttributes, @RequestParam("productId") Long productId, @RequestParam("customerId") Long customerId,
+                          HttpSession session){
+        Cart cart = new Cart(customerService.findById(customerId).get(),productService.findById(productId).get(), 1 );
+        cartService.add(cart);
+        redirectAttributes.addAttribute("customerId", customerId+"");
+//
+        return "redirect:/showCart";
+    }
+
+    @GetMapping("/showCart")
+    public String showCart(Model model,@RequestParam("customerId") String customerId,HttpSession session){
+        List<Cart> carts = cartService.findCartsByCustomer_Id(Long.parseLong(customerId));
+        List<Product> products = new ArrayList<>();
+        for (Cart cart: carts
+             ) {
+            products.add(productService.findById(cart.getProduct().getId()).get());
+        }
+        model.addAttribute("carts", carts);
+        model.addAttribute("products", products);
+        return "customer/cart";
+    }
 
 
 }
